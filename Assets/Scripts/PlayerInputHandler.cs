@@ -1,14 +1,12 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerInputHandler : MonoBehaviour
 {
-    public PlayerScript player;
-    void Awake()
-    {
-        //Cursor.lockState = CursorLockMode.Locked;
-    }
-    
+    public CreatureScript player;
+    public FirstPersonCamera playerCamera;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -39,6 +37,12 @@ public class PlayerInputHandler : MonoBehaviour
             // right
             direction.x += 1;
         }
+        // move player in direction they're facing
+        direction = playerCamera.cameraTransform.TransformDirection(direction);
+        direction.y = 0;
         player.Move(direction);
+        // camera control
+        playerCamera.AdjustRotation(Mouse.current.delta.x.value, Mouse.current.delta.y.value);
+        player.RotateCreatureForCamera(playerCamera.cameraTransform);
     }
 }

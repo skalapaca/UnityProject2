@@ -1,8 +1,7 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
-public class PlayerScript : MonoBehaviour
+public class CreatureScript : MonoBehaviour
 {
     CharacterController cc;
     [Header("Player Stats")]
@@ -39,11 +38,16 @@ public class PlayerScript : MonoBehaviour
         cc.Move(speed * Time.deltaTime * direction);
     }
 
+    public void RotateCreatureForCamera(Transform cameraTransform)
+    {
+        transform.rotation = cameraTransform.rotation;
+    }
+
     private void SimulateGravity()
     {
         if (cc.isGrounded)
         {
-            gravityTracker = -1f;
+            gravityTracker = -2f;
         }
         else
         {
