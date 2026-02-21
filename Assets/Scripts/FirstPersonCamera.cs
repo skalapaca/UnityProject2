@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class FirstPersonCamera : MonoBehaviour
 {
-    float xRotation = 0;
-    float yRotation = 0;
+    public float xRotation = 0;
+    public float yRotation = 0;
     public float xSpeed = 10f;
     public float ySpeed = 10f;
     public float maxLookUpAngle = 85f;
